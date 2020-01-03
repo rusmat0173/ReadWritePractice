@@ -1,0 +1,219 @@
+My Python Blog
+Blog number: 001
+Title: Start with Sedgewick Book, as usual
+Date: 09-11 Nov 19
+Tags: Sedgewick, hello world, dragon curves, Python tools, IDE, PyCharm, CodeSkulptor3, transpose matrix, csv, Numpy
+File locations: C:\Users\rusmat.ahmed\hello, C:\Users\rusmat.ahmed\PycharmProjects\SedgewickBook
+Text
+Sedgewick book wants you to do everything in a directory called ‘hello’, hence this location.  One big issue with Sedgewick is that it also wants you to use their own stdio library, rather than normal Python commands. So, as always, after a short while the book becomes unusable.  (For some reason the stdio library doesn’t download anyway.)
+What is good is that the programmes are, to begin, anyway, interactive and accessed through the command prompt.  I did these through Python’s inbuilt IDLE in the hello directory, before switching to PyCharm.  (Directory 
+Dragon curves was a good exercise to think through, and challenging enough.  Transposing matrices was another good exercise.  Here, doing a second time through Numpy to read in a csv is much easier than native csv reading.  Did some basic reading csv exercises.
+It was clear from looking back at past Python work, how many different environments I’d used.  Luckily I found a file where I wrote down the ones I’d found best. PyCharm was the best IDE, so I used that again.  I love CodeSkulptor 3 for short testing of how things work.  Read that Atom and Markdown were best Markdown editors.
+
+Blog number: 002
+Title: Toggle comments
+Date: 11 Nov 19
+Tags: Comments, Gotchas, Shortcuts
+File locations: -
+Text
+CodeSkulptor: Ctrl+k, Ctrl+Shift+k
+PyCharm: Ctrl+/ (on/off)
+
+
+
+Blog number: 003
+Title: Reading & Writing Files
+Date: 15-16 Nov 19
+Tags: Future Learn, Programming 103, Project Euler, csv, JSON, binary files, iterating, list iteration
+File locations::\Users\rusmat.ahmed\PycharmProjects\ReadWritePractice
+Text
+Found free online course by Future Learn Foundation, about reading and writing files, called Programming 103.
+JSON is interesting as a flexible form of storing data, and easy Python library.
+Also, did a complex, for me, Project Euler question (Q11). I wrote a lot of general functions that could work with any size square matrix. What I found hard was mentally working out the iteration through i, j, k.  Though I got the right answer, going through the Project Euler thread, I found people had done same thing in a few minutes.  (Not with functions, and nice use of list iteration.)
+
+Blog number: 004
+Title: Practicing OOP
+Date: 12-15 Nov 19
+Tags: OOP, cs.uct.ac.za, design
+File locations::\Users\rusmat.ahmed\PycharmProjects\OOPpractice
+Text
+Had sudden major wish to learn OOP. Most website examples are too trivial to be of any use at all.  Then found great resource from University of Cape Town (cs.uct.ac.za), with pages on Classes and OOP.
+Built a similar to examples Org_practice.py, that really stretched my OOP thinking - it’s hard to figure. Designing objects and their interactions carefully on paper beforehand (for quite a while) seems way ahead.
+
+
+
+Blog number: 005
+Title: More csv and JSON practice
+Date: 18 Nov 19
+Tags: csv, JSON, Numpy, pandas, header, extra line, DictWriter, dictionaries, Gotcha, Hack
+File locations: C\Users\rusmat.ahmed\PycharmProjects\FutureLearn\Programming103\csv_practice.py
+Text
+Struggled a lot with csv in getting or not getting headers (was a major issue in Project Euler Q11) when there isn’t actually a set of column titles.
+Different ways shown in this file.  Conclusion from many websites is that Numpy or pandas are much easier ways to import any decent size of csv file.  
+Also used DictReader.  
+An important hack is how to stop an extra line being added when you write to a csv file, with the newline = ‘’ in Python 3.
+
+Blog number: 006
+Title: JSON and RPG adventure game in objects
+Date: 18-22 Nov 19
+Tags: OOP, design, adventure games, JSON, add tuples, add vectors, Gotchas, Shortcuts, Hacks, while True, list comprehension
+File locations: C\Users\rusmat.ahmed\PycharmProjects\FutureLearn\Programming103\week2_rpg_game3.py
+Text
+Reading through the Future Learn: Programming 103 course, came across an RPG adventure game.  Felt I should be able to do in objects as a quick and elegant way to do it. Basically, cracking this took a whole mind-bending day.
+I am very happy with the outcome. Tried to think of objects naturally, what really has what property.  Have a nice (and now I understand it, but will I be able to remember) interaction between objects.  Found that only way to achieve my aims was to use multiple dictionaries.  
+Important function to find key from value, that’s a great hack. Could do in a list comprehension, also.  (Haven’t seen one for ages!) E.g.:
+* keys = [k for k, v in loot_dict.items()]
+* print(keys)
+* https://medium.com/better-programming/list-comprehension-in-python-8895a785550b
+Other important hacks/functions include adding vectors.  What I am very happy with is the way to check the player stays inside the area and that moves are legal (i.e. in bounds).  
+Neat check function to control the number of times ask for direction.
+Understand the use of while True in this interactive game, also.  Need to find a good way to break out of the while True (look at code).
+* https://realpython.com/python-while-loop/
+Basically, I learned loads!
+
+Blog number: 007
+Title: Mastermind Game
+Date: 22 Nov 19
+Tags: Game, Simple Game, Mastermind
+File locations: n/a
+Text
+On Eurostar back from Paris, worked out how to do a Mastermind game, thinking on from the RPG game in week 2 of Future Learn Programming 103.
+Mentally (and sketch) coded it. When I sorted the basic structure in my head, decided I would not use objects as nothing to interact with except the game board itself, and it would be easy and quick to do as just progressive code since there are a fixed number of attempts. (So you could write inside a big loop.)
+* Use capital letters (e.g. A-F) instead of printing colours, for speed.
+* Choose random letters from a list, e.g. [‘A’, ‘B’, ‘C’, …] and concatenate into a single string that is the solution.
+* Give the player [10] chances to guess/work out the solution. Eacxh go is marked independently, so no memory needed between goes, except by the human player.
+* Need to use deep copy for the one tricky function, that is to score the humans go.  (A human player go could be something like ‘ABCC’ – a string that is inputed as ‘guess = input()’  .)
+* import copy 
+* …
+* def score_check(guess, solution):
+o # length of guess known to be 4, e.g.
+o black = 0 # <= scoring pegs
+o white = 0
+o temp = copy.deep(solution)
+o for i in range(4):
+* if guess[i] == temp[i]:
+* temp[i] = ‘Z’ 
+* black += 1
+o for i in range(4):
+* if guess [i] in temp:
+* temp[i] = ‘Z’
+* white += 1
+* That scoring/checking function does the hard work.  
+* You can stop the game if you run out of goes, or if you get four blacks.
+* There is one thing I overlooked in the function, that is that the temp string is immutable, so you can’t just change elements.
+o One way around this is to change both the solution and guess strings into lists, and compare the lists with each other.
+Great, I have managed to create a game that works well – without having had to code anything. (But was able to think through structure and some of the issues that would arise.  Nice!)
+
+Blog number: 008
+Title: JSON and RPG adventure game in objects
+Date: 23-24 Nov 19
+Tags: OOP, design, adventure games, JSON, add tuples, add vectors, Gotchas, Shortcuts, Hacks, while True, list comprehension
+File locations: C\Users\rusmat.ahmed\PycharmProjects\FutureLearn\Programming103\week2_rpg_game4.py
+Text
+In a new file, added ability to save player details in JSPN format. Conceptually straightforward and did by adding the suggested code to the Player class init method.  Had to do more than I thought changes to the while game_go == True loop, but in end all worked fine.  (I think one loop inside another is maximum for comprehension.)
+
+Blog number: 009
+Title: SQL, SQlite, databases
+Date: 24 Nov 19
+Tags: Databases, SQL
+File locations: C\Users\rusmat.ahmed\PycharmProjects\FutureLearn\Programming103\computer_cards.db
+SQLite online viewer: inloop.github.io/sqlite-viewer/
+Text
+* First lesson
+o Drop the computer_cards file into the online viewer.
+o There are 3 ‘tables’ that are selectable in the first row.
+o The next row gives an interactive SQL command line.
+o Details of commands copied into Evernote.
+* Second lesson
+o Use Python to connect to an SQL data base.
+o Some differences in how you connect to this kind of file. You open a connector object, then get any data you want. That means you don’t have to train the whole, possibly huge, data. You should closer the connector, like you choose a file when not using the with method.
+
+Blog number: 010
+Title: Programming 103, last assignment, Top Trumps
+Date: 26 Nov 19
+Tags: Databases, SQL, Gotcha, Shortcut
+File locations: C\Users\rusmat.ahmed\PycharmProjects\FutureLearn\Programming103\...
+SQLite online viewer: inloop.github.io/sqlite-viewer/
+Text
+The final assignment is to create a ‘Top Trumps’ style game whereby two players can read simultaneously from a single SQL database.  Interesting mix of SQL and Python!
+* Lesson talks about the CRUD model for persistent storage: 
+o Create: inserting new data
+o Read: retrieving data
+o Update: updating data which is already stored
+o Delete: removing data
+Course gives code for the CRUD lesson:
+* import sqlite3
+* conn = … 	# <= connector to sql database
+* define functions for creating a record, reading a record, updating a record, deleting a record
+* get a command input for which of above functions to do.
+o Good command line hack/shortcut:
+* command = input(“….”)
+* conn.close()
+I wanted to do this in a more automatic way than in the assignment.  The assignment is very manual, I wanted to get the computer to sort out who wins after the first player chooses a category.  I got quite far with a way to use the SQL database to do this, and for one of the player’s Python programme to take the master role and the other the slave role. (That could alternate.) But what I couldn’t figure e reasonably lightweight thing to do was to tell the opponent what the category was and what each person’s statistic was.  I already would have had a new db that compared the two players’ attribute that was being competed.  But then how to tell the other player’s Python programme the information at the right time in an economic way.  So I’ve given up and will do as per the vanilla assignment.
+
+Blog number: 011
+Title: Python books
+Date: 28 Nov 19
+Tags: Python books, Foyles, No Starch Press
+File locations: n/a
+Text
+I wanted a Python book to do some projects with. Wanted to see in the flesh before buying and went to Foyles. All good ones (i.e. readable, fun and not academic, so for the hobbyist) were from No Starch Press.
+Here are notes/thoughts on each one I looked at:
+* Impractical Python Projects: my favourite, I think.  At the beginning stuff I’m not interested in, such as finding anagrams and encoding/decoding ciphers. Then interesting things such as analysing haiku and mapping Mars.
+* Python Crash Course: Starts with very basics, but then has projects. These include making a spaceship firing game (that I really am not interested in), use matplob lib and other libraries for data visualisation (and reading json files for this), and Django to make basic web apps.  Overall, too much stuff that I don’t really have interest in.
+* Automate the Boring Stuff with Python: was not there.  (Was one on my shortlist.)  From the table of contents online, very good stuff about how to manipulate and deal with many file formats, such as csv, json, Excel, Google, etc. Also about web scraping. Seems like a good reference book.
+* Math Adventures with Python: really liked this. Some stuff basic but good stuff like crating fractals and use of recursion.  The 2nd half of this seems really good, like building objects with classes, fractals and dragon curves through recursion, genetic algorithms.
+* Seriously Python: too advanced, and about dry stuff such as creating test harnesses, etc.
+* Python Playground: really good projects, but end sections to much involved with graphics, shaders, and hardware projects. (Like a Raspberry pi weather station – though that sounds fun.)
+
+
+
+
+Blog number: 012
+Title:  Lambdas and list (and other) comprehensions
+Date: 01 Dec 19
+Tags: lambda, list comprehension, sets, Project Euler
+File locations: 3 web links
+* https://www.python-course.eu/lambda.php
+* https://www.python-course.eu/list_comprehension.php
+* https://realpython.com/python-lambda/
+Text
+From Project Euler Q11 thread, looking at some people’s code, I wanted to look again at lambdas and list comprehensions.
+The first two links are very readable explanations of both.  What they say are that it is much more pythonic to use list (and other) comprehensions.  (The creator of Python doesn’t like lambdas.)
+Lambdas often have map, filter and reduce commands.
+The third link (from the excellent Dan Bader blog) is very clear and gives good advice: if you need to do more than a simple lambda, is easier/better to use list and other comprehensions.
+The second link gives very powerful examples of list and other comprehensions, including Python sets, which I’d forgotten about entirely.
+
+Blog number: 013
+Title:  Turtle racing, play again, nested WHILE loops
+Date: 07 Dec 19
+Tags: Turtles, game over, play again, nested while loops, json, OOP, extending a class
+File locations: 
+* C:\Users\rusmat.ahmed\PycharmProjects\FutureLearn\OOP_in_Python\real_turtle_race.py
+* C:\Users\rusmat.ahmed\PycharmProjects\FutureLearn\OOP_in_Python\real_turtle_race02.py
+* C:\Users\rusmat.ahmed\PycharmProjects\FutureLearn\OOP_in_Python\real_turtle_race02a.py
+Text
+Spent a very pleasant Saturday in Sanford, Florida, working on a Turtle Racing game.  As always, took too long.  A few important things learned/relearned
+* An easy thing to do is to use an invisible, dummy turtle to draw text, rather than too look up how to mix turtle and something else, e.g Tkinter?
+* Nested while loops: The game over ‘while’ loop was very obvious, but the do you want to play again while loop not so.  That was solved by remembering that the game over loop needed to be reset just outside the loop to not being over.
+* Had to extend the predefined Turtle class, as I wanted to add additional features, e.g. name and number of wins.
+* Good practice for writing and saving into json files.
+* Used a dummy set of  variables (“color”) for the json dictionary key, so as not to have to store the whole turtle instance.
+Version real_turtles_game_02 works. Version real_turtles_game_02a works with play again feature, but implementation flawed as described in the file itself.
+
+
+Blog number: -
+Title:  Python to dos, rolling list
+Date: last updated 01 Dec 19
+Tags: projects, to dos
+File locations: n/a
+Text
+In priority order:
+* Reorder this blog, from a text file.
+* Project Euler Q11 thread: look at elegant solutions – what can I learn?
+* Anagram game, and early stuff in the Impractical Python Projects book.
+* “Palingrams”?
+* Mandelbrot set and fractals from the No Starch Press ‘Math Adventures in Python’ book.
+2
+
+
